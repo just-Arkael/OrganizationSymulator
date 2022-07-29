@@ -10,6 +10,28 @@ namespace Organization
     {
         static void Main(string[] args)
         {
+            decimal mybudget;
+            Console.WriteLine("Let's create our company first.");
+            Console.WriteLine("What's the name of your company?");
+            string myname = Console.ReadLine();
+            Console.WriteLine("Give your company a starting budget.");
+            decimal.TryParse(Console.ReadLine(), out mybudget);
+            Organization team = new Organization(myname, mybudget);
+        Reset:
+            Console.WriteLine("What's the next projecty your comany is going to make?");
+            mybudget = team.WorkLoad(Console.ReadLine());
+            if (mybudget > 0)
+            {
+                Console.WriteLine("Your company received {0} in profits!", mybudget);
+            }
+            else
+            {
+                Console.WriteLine("Your company lost {0}...", -mybudget);
+            }
+
+            Console.ReadKey();
+            goto Reset;
+
         }
     }
 
@@ -29,18 +51,9 @@ namespace Organization
             OrganizationName = name;
             budget = budjet;
             team = new Post[5];
-            team[0].job = "Manager";
-            team[0].salary = (decimal)30000;
-            team[1].job = "Team Leader";
-            team[1].salary = (decimal)27000;
-            team[2].job = "Programmer";
-            team[2].salary = (decimal)22000;
-            team[3].job = "Programmer";
-            team[3].salary = (decimal)22000;
-            team[4].job = "Junior";
-            team[4].salary = (decimal)18000;
             for (byte i = 0; i < 5; i++)
             {
+                team[i] = new Post();
                 switch (rand.Next(10))
                 {
                     case 0:
@@ -115,17 +128,24 @@ namespace Organization
                 }
                 team[i].person = new Employee(randomname, randomsurname);
             }
+            team[0].job = "Manager";
+            team[0].salary = (decimal)30000;
+            team[1].job = "Team Leader";
+            team[1].salary = (decimal)27000;
+            team[2].job = "Programmer";
+            team[2].salary = (decimal)22000;
+            team[3].job = "Programmer";
+            team[3].salary = (decimal)22000;
+            team[4].job = "Junior";
+            team[4].salary = (decimal)18000;
 
         }
 
-        public decimal WorkLoad(decimal budjet, string projectname)
+        public decimal WorkLoad(string projectname)
         {
             decimal originalbudget = budget;
-            budget += budjet;
+            budget += 111000 + rand.Next(50000);
             Console.WriteLine("Team {0} is working on project {1}", OrganizationName, projectname);
-            Console.Write("Budget given for the project: ");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(budjet);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Total spent on the project:");
             for (byte i = 0; i < 5; i++)
@@ -135,6 +155,7 @@ namespace Organization
             }
             Console.WriteLine();
             GiveSalaries();
+            Console.WriteLine("Budget left: {0}", budget);
             return budget - originalbudget;
         }
 

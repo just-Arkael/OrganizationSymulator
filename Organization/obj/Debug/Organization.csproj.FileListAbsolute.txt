@@ -1,0 +1,8 @@
+C:\Users\Arkael\source\repos\Organization\Organization\bin\Debug\Organization.exe.config
+C:\Users\Arkael\source\repos\Organization\Organization\bin\Debug\Organization.exe
+C:\Users\Arkael\source\repos\Organization\Organization\bin\Debug\Organization.pdb
+C:\Users\Arkael\source\repos\Organization\Organization\obj\Debug\Organization.csproj.AssemblyReference.cache
+C:\Users\Arkael\source\repos\Organization\Organization\obj\Debug\Organization.csproj.SuggestedBindingRedirects.cache
+C:\Users\Arkael\source\repos\Organization\Organization\obj\Debug\Organization.csproj.CoreCompileInputs.cache
+C:\Users\Arkael\source\repos\Organization\Organization\obj\Debug\Organization.exe
+C:\Users\Arkael\source\repos\Organization\Organization\obj\Debug\Organization.pdb
