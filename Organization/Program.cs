@@ -17,7 +17,7 @@ namespace Organization
     class Organization
     {
         public string OrganizationName { get; }
-        public decimal budget { get; }
+        decimal budget;
         public Post[] team;
         Random rand = new Random();
 
@@ -29,11 +29,18 @@ namespace Organization
             OrganizationName = name;
             budget = budjet;
             team = new Post[5];
+            team[0].job = "Manager";
+            team[0].salary = (decimal)30000;
+            team[1].job = "Team Leader";
+            team[1].salary = (decimal)27000;
+            team[2].job = "Programmer";
+            team[2].salary = (decimal)22000;
+            team[3].job = "Programmer";
+            team[3].salary = (decimal)22000;
+            team[4].job = "Junior";
+            team[4].salary = (decimal)18000;
             for (byte i = 0; i < 5; i++)
             {
-                team[0].job = "Manager";
-                team[0].salary = (decimal)20000;
-                team[0].person = new Employee(randomname, randomsurname);
                 switch (rand.Next(10))
                 {
                     case 0:
@@ -73,44 +80,71 @@ namespace Organization
                 switch (rand.Next(10))
                 {
                     case 0:
-                        randomsurname = "Ivan";
+                        randomsurname = "Kalimur";
                         break;
                     case 1:
-                        randomsurname = "Marry";
+                        randomsurname = "Jones";
                         break;
                     case 2:
-                        randomsurname = "Markus";
+                        randomsurname = "Rich";
                         break;
                     case 3:
-                        randomsurname = "Jessica";
+                        randomsurname = "Marbles";
                         break;
                     case 4:
-                        randomsurname = "Alex";
+                        randomsurname = "Bighand";
                         break;
                     case 5:
                         randomsurname = "John";
                         break;
                     case 6:
-                        randomsurname = "Stuard";
+                        randomsurname = "Universe";
                         break;
                     case 7:
-                        randomsurname = "Hope";
+                        randomsurname = "Light";
                         break;
                     case 8:
-                        randomsurname = "Cally";
+                        randomsurname = "Beremut";
                         break;
                     case 9:
-                        randomsurname = "Alexander";
+                        randomsurname = "Smetanka";
                         break;
                     case 10:
-                        randomsurname = "Eugene";
+                        randomsurname = "Cube";
                         break;
                 }
-
+                team[i].person = new Employee(randomname, randomsurname);
             }
 
         }
 
+        public decimal WorkLoad(decimal budjet, string projectname)
+        {
+            decimal originalbudget = budget;
+            budget += budjet;
+            Console.WriteLine("Team {0} is working on project {1}", OrganizationName, projectname);
+            Console.Write("Budget given for the project: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(budjet);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Total spent on the project:");
+            for (byte i = 0; i < 5; i++)
+            {
+                team[i].person.ShowInfo();
+                Console.WriteLine("'s salary - {0}", team[i].salary);
+            }
+            Console.WriteLine();
+            GiveSalaries();
+            return budget - originalbudget;
+        }
+
+        void GiveSalaries()
+        {
+            for (byte i = 0; i < 5; i++)
+            {
+                budget -= team[i].salary;
+            }
+        }
 
     }
 
